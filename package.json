@@ -1,7 +1,7 @@
 {
-  "name": "redpacket-screen",
+  "name": "seucse-redpacket",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "redpacket part of SEUCSE 17-18's new year gala",
   "author": "Silence <daniel.s.mo503@gmail.com>",
   "private": true,
   "scripts": {
