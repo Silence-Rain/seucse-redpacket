@@ -36,7 +36,7 @@
     methods: {
       drawText (text, fontSize, x, y) {
         // 文字
-        this.ctx.fillStyle = '#000'
+        this.ctx.fillStyle = '#ED4D2F'
         this.ctx.font = `bold ${fontSize}px ''`
         this.ctx.textAlign = 'center'
         this.ctx.textBaseline = 'middle'

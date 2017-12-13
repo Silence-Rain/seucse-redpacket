@@ -13,7 +13,7 @@
 
     <div class="packet-amount">
       <div v-for="(item, index) in amount" :key="index">
-        <img src="../assets/redpacket.png"/>
+        <img src="../assets/imgs/redpacket.png"/>
         <a v-if="index == 0" style="color:#DC143C;">{{item}}</a>
         <a v-else-if="index == 1" style="color:#FF8C00;">{{item}}</a>
         <a v-else-if="index == 2" style="color:#FFD700;">{{item}}</a>
@@ -114,7 +114,7 @@ export default {
 .container{
   width: 800px;
   height: 1200px;
-  background-image: url("../assets/background.png");
+  background-image: url("../assets/imgs/background.png");
   background-repeat: no-repeat;
   padding-top: 390px;
   padding-left: 150px;

@@ -1,29 +1,12 @@
 <template>
-  <div class="container">
-    <div v-if="isRunning">
-      <div style="margin-top:-100px;">
-        <h1>计软网安2017-2018新年晚会</h1>
-        <h1>计软网红包雨</h1>
-      </div>
-      <div style="margin-top:120px;">
-
-        <count-down :sec="countdown" :isRunning="isRunning"/>
-
-        <h2 style="margin-top:150px;">活动进行中~</h2>
-      </div>
+  <div>
+    <div class="container" v-if="isRunning">
+      <img class="bg" src="../assets/imgs/main-start.png"/>
+      <count-down class="countdown" :sec="countdown" :isRunning="isRunning"/>
     </div>
-    <div v-else>
-      <div>
-        <h1>计软网安2017-2018新年晚会</h1>
-        <h1>计软网大作战</h1>
-      </div>
-      <div style="margin-top:150px;">
-        <h2 v-if="readyToGo">红包传送门将在 
-          <span>{{ready}}</span> 
-        秒后开启</h2>
-        <h2 v-else>活动马上开始，大批红包is loading~</h2>
-        <h2 style="margin-top:150px;">当前在线人数：{{count}}</h2>   
-      </div>
+    <div class="container" v-else>
+      <img class="bg" src="../assets/imgs/main.png"/>
+      <a class="number">{{count}}</a>   
     </div>
   </div>
 </template>
@@ -41,16 +24,12 @@ export default {
     return {
       msg: 0,
       count: 0,
-      isRunning: false,
-      readyToGo: true
+      isRunning: false
     }
   },
   computed: {
     countdown () {
       return (this.msg < 18) ? (18 - this.msg) : 0
-    }, 
-    ready () {
-      return (this.msg < 5) ? (5 - this.msg) : 0
     }
   },
   watch: {
@@ -64,16 +43,15 @@ export default {
     socket.init("main")
     let that = this
 
-    socket.sock_main.onmessage = function (event) {
-      var temp = JSON.parse(event.data)
-      that.readyToGo = temp.r
+    // socket.sock_main.onmessage = function (event) {
+    //   var temp = JSON.parse(event.data)
+    //   that.isRunning = temp.r
 
-      if (temp.r) {
-        that.isRunning = (temp.t >= 5) ? true : false
-        that.msg = temp.t
-        that.count = temp.c
-      }
-    }
+    //   if (temp.r) {
+    //     that.msg = temp.t
+    //     that.count = temp.c
+    //   }
+    // }
   }
 }
 </script>
@@ -81,26 +59,31 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .container{
-  width: 1920px;
-  height: 1080px;
+  width: 3000px;
+  height: 2250px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 120px;
   text-align: center;
 }
 
-h1{
-  font-size: 65px;
+.bg{
+  position: relative;
+  z-index: 1000;
 }
 
-h2{
-  font-size: 40px;
+.countdown{
+  position: absolute;
+  top: 1400px;
+  z-index: 9999;
 }
 
-span{
-  margin: 0 20px;
-  font-size: 70px;
-  color: #DC143C;
+.number{
+  position: absolute;
+  top: 1720px;
+  z-index: 9999;
+  font-family: yijun-clover;
+  font-size: 110px;
+  color: #E89181;
 }
 </style>

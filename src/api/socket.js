@@ -3,9 +3,9 @@ let socket = {
 	sock_second: null,
 	init: function (handler) {
 		if (handler == "main")
-			this.sock_main = new WebSocket("ws://v3.myseu.cn:6280/redpack/main")
+			this.sock_main = new WebSocket("ws://myseu.cn/redpack/main")
 		else if (handler == "second")
-			this.sock_second = new WebSocket("ws://v3.myseu.cn:6280/redpack/second")
+			this.sock_second = new WebSocket("ws://myseu.cn/redpack/second")
 	}
 }
 
