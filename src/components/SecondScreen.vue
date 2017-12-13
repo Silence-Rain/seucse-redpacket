@@ -82,7 +82,7 @@ export default {
         a: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513767086&di=4ef91092a02f6a1300f9e22863b0501b&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.yxzoo.com%2Fallimg%2F160725%2F1-160H5095628.png"
       },
       ],
-      amount: [66.66, 20.18, 20.17, 17.18, 17.18, 17.18, 17.18, 17.18, 17.18, 9.71],
+      amount: [66.66, 20.18, 20.18, 17.18, 17.18, 17.18, 17.18, 17.18, 9.71, 9.71],
       isRunning: false
     }
   },
