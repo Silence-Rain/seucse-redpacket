@@ -1,11 +1,13 @@
 <template>
   <div>
     <div class="container" v-if="isRunning">
-      <img class="bg" src="../assets/imgs/main-start.png"/>
+      <img class="title" src="../assets/imgs/start-title.png"/>
+      <img class="bottom" src="../assets/imgs/start-bottom.png"/>
       <count-down class="countdown" :sec="countdown" :isRunning="isRunning"/>
     </div>
     <div class="container" v-else>
-      <img class="bg" src="../assets/imgs/main.png"/>
+      <img class="title" src="../assets/imgs/main-title.png"/>
+      <img class="bottom" src="../assets/imgs/main-bottom.png"/>
       <a class="number">{{count}}</a>   
     </div>
   </div>
@@ -22,34 +24,39 @@ export default {
   },
   data () {
     return {
-      msg: 0,
+      msg: 3,
       count: 0,
-      isRunning: false
+      isRunning: false,
+      //flag: false
     }
   },
   computed: {
     countdown () {
-      return (this.msg < 18) ? (18 - this.msg) : 0
-    }
-  },
-  watch: {
-    isRunning (val, oldVal) {
-      if (val == false && oldVal == true) {
-        socket.sock_main.close()
-      }
+      return (this.msg < 18) ? (19 - this.msg) : 0
     }
   },
   created () {
     socket.init("main")
     let that = this
 
-    // socket.sock_main.onmessage = function (event) {
-    //   var temp = JSON.parse(event.data)
-    //   that.isRunning = temp.r
-
-    //   if (temp.r) {
-    //     that.msg = temp.t
-    //     that.count = temp.c
+    socket.sock_main.onmessage = function (event) {
+      var temp = JSON.parse(event.data)
+      that.isRunning = temp.r
+      that.msg = temp.t
+      that.count = temp.c
+      console.log(that.msg, that.isRunning)
+    }
+  },
+  watch: {
+    // isRunning (val, oldVal) {
+    //   if (!val && oldVal && !this.flag) {
+    //     this.isRunning = true
+    //     this.msg = 18
+    //     this.flag = true
+    //     console.log(this.msg)
+    //     setTimeout(() => {
+    //       this.isRunning = false
+    //     }, 1000)
     //   }
     // }
   }
@@ -61,28 +68,33 @@ export default {
 .container{
   width: 3000px;
   height: 2250px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  background-image: url("../assets/imgs/main-bg.png");
+  background-repeat: no-repeat;
 }
 
-.bg{
-  position: relative;
-  z-index: 1000;
+.title{
+  width: 600px;
+  height: 210px;
+  margin-left: 1610px;
+  margin-top: 880px;
+}
+
+.bottom{
+  width: 820px;
+  height: 500px;
+  margin-left: 1100px;
+  margin-top: 90px;
 }
 
 .countdown{
-  position: absolute;
-  top: 1400px;
-  z-index: 9999;
+  margin-top: -300px;
+  margin-left: 1300px;
 }
 
 .number{
-  position: absolute;
-  top: 1720px;
-  z-index: 9999;
-  font-family: yijun-clover;
+  display: block;
+  margin-top: 40px;
+  margin-left: 1470px; 
   font-size: 110px;
   color: #E89181;
 }

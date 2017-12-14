@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 	  <main-screen/>
-  <!-- <second-screen/>  -->
+    <second-screen/>
   </div>
 </template>
 
@@ -21,12 +21,10 @@ export default {
 </script>
 
 <style>
-@font-face{
-  font-family: yijun-clover;
-  src: url("./assets/fonts/yijun-clover.ttf") format("truetype");
-}
-
 #app {
-  font-family: yijun-clover;
+  font-family: "Microsoft YaHei UI";
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 </style>

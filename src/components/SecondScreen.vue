@@ -45,42 +45,7 @@ export default {
         s: 666,
         n: "Silence心雨",
         a: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513767086&di=4ef91092a02f6a1300f9e22863b0501b&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.yxzoo.com%2Fallimg%2F160725%2F1-160H5095628.png"
-      },
-      {
-        s: 666,
-        n: "Silence心雨",
-        a: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513767086&di=4ef91092a02f6a1300f9e22863b0501b&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.yxzoo.com%2Fallimg%2F160725%2F1-160H5095628.png"
-      },
-      {
-        s: 666,
-        n: "Silence心雨",
-        a: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513767086&di=4ef91092a02f6a1300f9e22863b0501b&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.yxzoo.com%2Fallimg%2F160725%2F1-160H5095628.png"
-      },
-      {
-        s: 666,
-        n: "Silence心雨",
-        a: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513767086&di=4ef91092a02f6a1300f9e22863b0501b&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.yxzoo.com%2Fallimg%2F160725%2F1-160H5095628.png"
-      },
-      {
-        s: 666,
-        n: "Silence心雨",
-        a: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513767086&di=4ef91092a02f6a1300f9e22863b0501b&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.yxzoo.com%2Fallimg%2F160725%2F1-160H5095628.png"
-      },
-      {
-        s: 666,
-        n: "Silence心雨",
-        a: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513767086&di=4ef91092a02f6a1300f9e22863b0501b&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.yxzoo.com%2Fallimg%2F160725%2F1-160H5095628.png"
-      },
-      {
-        s: 666,
-        n: "Silence心雨",
-        a: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513767086&di=4ef91092a02f6a1300f9e22863b0501b&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.yxzoo.com%2Fallimg%2F160725%2F1-160H5095628.png"
-      },
-      {
-        s: 666,
-        n: "Silence心雨",
-        a: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513767086&di=4ef91092a02f6a1300f9e22863b0501b&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.yxzoo.com%2Fallimg%2F160725%2F1-160H5095628.png"
-      },
+      }      
       ],
       amount: [66.66, 20.18, 20.18, 17.18, 17.18, 17.18, 17.18, 17.18, 9.71, 9.71],
       isRunning: false
@@ -98,23 +63,21 @@ export default {
         that.list = temp.l
       }
     } 
-  },
-  watch: {
-    isRunning (val, oldVal) {
-      if (val == false && oldVal == true) {
-        socket.sock_second.close()
-      }
-    } 
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+a{
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: bold;
+}
+
 .container{
   width: 800px;
   height: 1200px;
-  background-image: url("../assets/imgs/background.png");
+  background-image: url("../assets/imgs/second-bg.png");
   background-repeat: no-repeat;
   padding-top: 390px;
   padding-left: 150px;
