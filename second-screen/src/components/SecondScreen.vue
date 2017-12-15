@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import socket from "../api/socket"
 
 export default {
   name: 'SecondScreen',

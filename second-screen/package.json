@@ -1,7 +1,7 @@
 {
-  "name": "seucse-redpacket",
+  "name": "second-screen",
   "version": "1.0.0",
-  "description": "redpacket part of SEUCSE 17-18's new year gala",
+  "description": "A Vue.js project",
   "author": "Silence <daniel.s.mo503@gmail.com>",
   "private": true,
   "scripts": {
@@ -25,7 +25,6 @@
     "chalk": "^2.0.1",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
-    "eventsource-polyfill": "^0.9.6",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",

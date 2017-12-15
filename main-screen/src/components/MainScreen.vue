@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import socket from "../api/socket"
 import CountDown from "./CountDown"
 
 export default {
@@ -24,6 +23,7 @@ export default {
   },
   data () {
     return {
+      socket: null,
       msg: 0,
       count: 0,
       isRunning: false,
@@ -36,10 +36,13 @@ export default {
     }
   },
   created () {
-    socket.init("main")
     let that = this
+    this.socket = new WebSocket("wss://myseu.cn/redpack/main")
 
-    socket.sock_main.onmessage = function (event) {
+    this.checkSocket()
+
+    //socket的onmessage绑定函数
+    let cb = (event) => {
       var temp = JSON.parse(event.data)
       
       if (that.msg == 17) {           //服务器已经发来17，最后一秒
@@ -49,10 +52,12 @@ export default {
         else {                        //flag为true， 说明此时是18s
           that.isRunning = true
           that.msg = 18               //手动设置倒计时为0
-          socket.close("main")        //关掉websocket，避免后续数据影响前端状态
+          that.socket.close()              //关掉websocket，避免后续数据影响前端状态
 
           setTimeout(() => {          //手动设置1s后渲染回结束页面
             that.isRunning = false
+            that.socket = new WebSocket("wss://myseu.cn/redpack/main")
+            that.socket.onmessage = cb
           }, 1000)
         }
       }
@@ -61,6 +66,17 @@ export default {
         that.msg = temp.t
         that.count = temp.c
       }
+    }
+
+    that.socket.onmessage = cb
+  }, 
+  methods: {
+    //检查socket连接状态
+    checkSocket () {
+      setInterval(() => {
+      if (this.socket.readyState == WebSocket.CLOSE || this.socket.readyState == WebSocket.CLOSING)
+        this.socket = new WebSocket("wss://myseu.cn/redpack/main")
+      }, 200)
     }
   }
 }
