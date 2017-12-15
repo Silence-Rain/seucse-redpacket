@@ -24,15 +24,15 @@ export default {
   },
   data () {
     return {
-      msg: 3,
+      msg: 0,
       count: 0,
       isRunning: false,
-      //flag: false
+      flag: false           //服务端每0.5s发送一次数据，判断当前是1s内的第一次还是第二次
     }
   },
   computed: {
     countdown () {
-      return (this.msg < 18) ? (19 - this.msg) : 0
+      return (this.msg < 18) ? (18 - this.msg) : 0
     }
   },
   created () {
@@ -41,29 +41,31 @@ export default {
 
     socket.sock_main.onmessage = function (event) {
       var temp = JSON.parse(event.data)
-      that.isRunning = temp.r
-      that.msg = temp.t
-      that.count = temp.c
-      console.log(that.msg, that.isRunning)
+      
+      if (that.msg == 17) {           //服务器已经发来17，最后一秒
+        if (!that.flag) {             //flag为false，说明此时是17.5s
+          that.flag = true
+        }
+        else {                        //flag为true， 说明此时是18s
+          that.isRunning = true
+          that.msg = 18               //手动设置倒计时为0
+          socket.close("main")        //关掉websocket，避免后续数据影响前端状态
+
+          setTimeout(() => {          //手动设置1s后渲染回结束页面
+            that.isRunning = false
+          }, 1000)
+        }
+      }
+      else {
+        that.isRunning = temp.r
+        that.msg = temp.t
+        that.count = temp.c
+      }
     }
-  },
-  watch: {
-    // isRunning (val, oldVal) {
-    //   if (!val && oldVal && !this.flag) {
-    //     this.isRunning = true
-    //     this.msg = 18
-    //     this.flag = true
-    //     console.log(this.msg)
-    //     setTimeout(() => {
-    //       this.isRunning = false
-    //     }, 1000)
-    //   }
-    // }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .container{
   width: 3000px;

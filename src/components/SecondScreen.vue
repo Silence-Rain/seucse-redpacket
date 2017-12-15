@@ -30,23 +30,7 @@ export default {
   name: 'SecondScreen',
   data () {
     return {
-      list: [
-      {
-        s: 666,
-        n: "草莓牛奶冰激凌蛋糕",
-        a: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513767086&di=4ef91092a02f6a1300f9e22863b0501b&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.yxzoo.com%2Fallimg%2F160725%2F1-160H5095628.png"
-      },
-      {
-        s: 666,
-        n: "cv接的迟到专家",
-        a: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513767086&di=4ef91092a02f6a1300f9e22863b0501b&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.yxzoo.com%2Fallimg%2F160725%2F1-160H5095628.png"
-      },
-      {
-        s: 666,
-        n: "Silence心雨",
-        a: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513767086&di=4ef91092a02f6a1300f9e22863b0501b&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.yxzoo.com%2Fallimg%2F160725%2F1-160H5095628.png"
-      }      
-      ],
+      list: [],
       amount: [66.66, 20.18, 20.18, 17.18, 17.18, 17.18, 17.18, 17.18, 9.71, 9.71],
       isRunning: false
     }
@@ -67,7 +51,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 a{
   color: rgba(0, 0, 0, 0.6);
