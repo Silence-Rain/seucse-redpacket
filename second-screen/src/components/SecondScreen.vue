@@ -29,23 +29,36 @@ export default {
   name: 'SecondScreen',
   data () {
     return {
+      socket: null,
       list: [],
       amount: [66.66, 20.18, 20.18, 17.18, 17.18, 17.18, 17.18, 17.18, 9.71, 9.71],
       isRunning: false
     }
   },
   created () {
-    let that = this
-    socket.init("second")
-
-    socket.sock_second.onmessage = function (event) {
+    this.socket = new WebSocket("wss://myseu.cn/redpack/second")
+    this.socket.onmessage = this.cb
+    this.checkSocket()
+  }, 
+  methods: {
+    checkSocket () {
+      let that = this
+      setInterval(() => {
+        if (that.socket.readyState == WebSocket.CLOSED 
+          || that.socket.readyState == WebSocket.CLOSING) {
+          that.socket = new WebSocket("wss://myseu.cn/redpack/second")
+          that.socket.onmessage = that.cb
+        }
+      }, 200)
+    },
+    cb (event) {
       var temp = JSON.parse(event.data)
-      that.isRunning = temp.r
+      this.isRunning = temp.r
 
       if (temp.r) {
-        that.list = temp.l
+        this.list = temp.l
       }
-    } 
+    }
   }
 }
 </script>

@@ -9,6 +9,9 @@
     "start": "npm run dev",
     "build": "node build/build.js"
   },
+  "build": {
+    "assetsRoot": "https://myseu.cn/cseredpack/"
+  },
   "dependencies": {
     "vue": "^2.5.2"
   },

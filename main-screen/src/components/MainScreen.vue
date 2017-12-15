@@ -36,14 +36,26 @@ export default {
     }
   },
   created () {
-    let that = this
     this.socket = new WebSocket("wss://myseu.cn/redpack/main")
-
+    this.socket.onmessage = cb
     this.checkSocket()
-
+  }, 
+  methods: {
+    //检查socket连接状态
+    checkSocket () {
+      let that = this
+      setInterval(() => {
+      if (that.socket.readyState == WebSocket.CLOSED 
+        || that.socket.readyState == WebSocket.CLOSING) {
+        that.socket = new WebSocket("wss://myseu.cn/redpack/main")
+        that.socket.onmessage = that.cb
+      }
+      }, 200)
+    }, 
     //socket的onmessage绑定函数
-    let cb = (event) => {
+    cb (event) {
       var temp = JSON.parse(event.data)
+      let that = this
       
       if (that.msg == 17) {           //服务器已经发来17，最后一秒
         if (!that.flag) {             //flag为false，说明此时是17.5s
@@ -66,17 +78,6 @@ export default {
         that.msg = temp.t
         that.count = temp.c
       }
-    }
-
-    that.socket.onmessage = cb
-  }, 
-  methods: {
-    //检查socket连接状态
-    checkSocket () {
-      setInterval(() => {
-      if (this.socket.readyState == WebSocket.CLOSE || this.socket.readyState == WebSocket.CLOSING)
-        this.socket = new WebSocket("wss://myseu.cn/redpack/main")
-      }, 200)
     }
   }
 }
