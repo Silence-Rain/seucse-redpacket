@@ -9,6 +9,8 @@
         <a class="count" v-else-if="index == 2" style="color:#FFD700;">{{item.s}}</a>
         <a class="count" v-else>{{item.s}}</a>
       </div>
+
+      <img src="../assets/imgs/sponsor.png" class="sponsor"/>
     </div>
 
     <div class="packet-amount">
@@ -20,6 +22,7 @@
         <a v-else>{{item}}</a>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -138,5 +141,13 @@ a{
 
 .packet-amount div a{
   font-size: 30px;
+}
+
+.sponsor{
+  width: 520px;
+  height: 48px;
+  position: absolute;
+  top: 1130px;
+  left: 160px;
 }
 </style>

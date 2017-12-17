@@ -1,5 +1,8 @@
 <template>
   <div>
+    <transition name="fade">
+      <img src="../assets/imgs/flash.png" v-if="isAlive" class="flash"/>
+    </transition>
     <div class="container" v-if="isRunning">
       <img class="title" src="../assets/imgs/start-title.png"/>
       <img class="bottom" src="../assets/imgs/start-bottom.png"/>
@@ -27,6 +30,7 @@ export default {
       msg: 0,
       count: 0,
       isRunning: false,
+      isAlive: false,       //与服务器连接是否alive，控制呼吸灯
       flag: false           //服务端每0.5s发送一次数据，判断当前是1s内的第一次还是第二次
     }
   },
@@ -37,7 +41,7 @@ export default {
   },
   created () {
     this.socket = new WebSocket("wss://myseu.cn/redpack/main")
-    this.socket.onmessage = cb
+    this.socket.onmessage = this.cb
     this.checkSocket()
   }, 
   methods: {
@@ -56,6 +60,12 @@ export default {
     cb (event) {
       var temp = JSON.parse(event.data)
       let that = this
+
+      //设置呼吸灯每0.25s闪一次
+      this.isAlive = true
+      setTimeout(() => {
+        this.isAlive = false
+      }, 250)
       
       if (that.msg == 17) {           //服务器已经发来17，最后一秒
         if (!that.flag) {             //flag为false，说明此时是17.5s
@@ -84,6 +94,22 @@ export default {
 </script>
 
 <style scoped>
+.flash{
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 1900px;
+  left: 200px; 
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .25s
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0
+}
+
 .container{
   width: 3000px;
   height: 2250px;
