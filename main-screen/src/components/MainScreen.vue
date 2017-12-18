@@ -27,7 +27,7 @@ export default {
   data () {
     return {
       socket: null,
-      msg: 0,
+      msg: 12,
       count: 0,
       isRunning: false,
       isAlive: false,       //与服务器连接是否alive，控制呼吸灯
@@ -95,11 +95,11 @@ export default {
 
 <style scoped>
 .flash{
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   position: absolute;
-  top: 1900px;
-  left: 200px; 
+  top: 900px;
+  left: 120px; 
 }
 
 .fade-enter-active, .fade-leave-active {
@@ -111,36 +111,38 @@ export default {
 }
 
 .container{
-  width: 3000px;
-  height: 2250px;
+  width: 1850px;
+  height: 1068px;
   background-image: url("../assets/imgs/main-bg.png");
   background-repeat: no-repeat;
 }
 
 .title{
-  width: 600px;
-  height: 210px;
-  margin-left: 1610px;
-  margin-top: 880px;
+  width: 250px;
+  height: 85px;
+  margin-left: 960px;
+  margin-top: 420px;
 }
 
 .bottom{
-  width: 820px;
-  height: 500px;
-  margin-left: 1100px;
-  margin-top: 90px;
+  width: 440px;
+  height: 260px;
+  margin-left: 700px;
+  margin-top: 40px;
 }
 
 .countdown{
-  margin-top: -300px;
-  margin-left: 1300px;
+  width: 200px;
+  height: 200px;
+  margin-top: -170px;
+  margin-left: 800px;
 }
 
 .number{
   display: block;
-  margin-top: 40px;
-  margin-left: 1470px; 
-  font-size: 110px;
+  margin-top: 10px;
+  margin-left: 900px; 
+  font-size: 70px;
   color: #E89181;
 }
 </style>

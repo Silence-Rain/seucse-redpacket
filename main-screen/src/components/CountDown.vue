@@ -1,6 +1,6 @@
 <template>
   <section class="ctD-wrap" >
-    <canvas id="cD" width="400" height="400"></canvas>
+    <canvas id="cD" width="240" height="240"></canvas>
   </section>
 </template>
 
@@ -12,9 +12,9 @@
       return {
         ctx: null,
         timer: null,
-        r: 200,                             // 背景圆半径r
-        rB: 180,                            // 圆环半径
-        lineWidth: 40,                      // 圆环粗细程度
+        r: 120,                             // 背景圆半径r
+        rB: 95,                            // 圆环半径
+        lineWidth: 25,                      // 圆环粗细程度
         color: "rgba(0, 255, 0, .6)",       // 圆环颜色
       }
     },
@@ -80,8 +80,8 @@
 
         // 文字
         let time = this.sec
-        this.drawText(time, 120, 0, -30)
-        this.drawText("sec", 50, 0, 70)   
+        this.drawText(time, 65, 0, -20)
+        this.drawText("sec", 28, 0, 35)   
       },
     },
     mounted () {
